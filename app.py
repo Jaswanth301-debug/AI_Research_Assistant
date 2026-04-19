@@ -66,8 +66,13 @@ button {
 </style>
 """, unsafe_allow_html=True)
 
-load_dotenv()
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+try:
+    api_key = st.secrets["GOOGLE_API_KEY"]
+except:
+    load_dotenv()
+    api_key = os.getenv("GOOGLE_API_KEY")
+
+genai.configure(api_key=api_key)
 
 model = genai.GenerativeModel("gemini-2.5-flash")
 

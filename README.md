@@ -1,4 +1,4 @@
-# 🤖 AI Research Assistant (Live Web App)
+# 🤖 AI Research Assistant
 
 An AI-powered research assistant built using **Streamlit** and **Google Gemini API** that helps users quickly understand AI/ML concepts and analyze research papers with concise responses.
 

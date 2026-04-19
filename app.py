@@ -4,14 +4,12 @@ import os
 from dotenv import load_dotenv
 import PyPDF2
 
-# ------------------ CONFIG ------------------
 st.set_page_config(
     page_title="AI Research Assistant",
     page_icon="🤖",
     layout="centered"
 )
 
-# ------------------ MODERN UI ------------------
 st.markdown("""
 <style>
 .stApp {
@@ -68,13 +66,11 @@ button {
 </style>
 """, unsafe_allow_html=True)
 
-# ------------------ LOAD API ------------------
 load_dotenv()
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 model = genai.GenerativeModel("gemini-2.5-flash")
 
-# ------------------ TITLE ------------------
 st.title("🤖 AI Research Assistant")
 
 st.markdown("""
@@ -86,7 +82,6 @@ Ask questions or upload research papers for quick insights.
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-# ------------------ PDF FUNCTION ------------------
 def extract_text(file):
     reader = PyPDF2.PdfReader(file)
     text = ""
@@ -95,7 +90,6 @@ def extract_text(file):
             text += page.extract_text()
     return text
 
-# ------------------ PDF UPLOAD ------------------
 st.markdown("### 📄 Upload Research Paper")
 
 uploaded_file = st.file_uploader("", type=["pdf"])
@@ -123,16 +117,13 @@ Keep everything concise.
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-# ------------------ CHAT SESSION ------------------
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# ------------------ DISPLAY CHAT ------------------
 for role, msg in st.session_state.messages:
     with st.chat_message(role):
         st.markdown(msg)
 
-# ------------------ CHAT INPUT ------------------
 user_input = st.chat_input("Ask your research question...")
 
 if user_input:
@@ -174,7 +165,6 @@ User Question:
     with st.chat_message("assistant"):
         st.markdown(bot_reply)
 
-# ------------------ DOWNLOAD CHAT ------------------
 st.markdown("<br>", unsafe_allow_html=True)
 
 if st.button("📥 Download Chat"):
